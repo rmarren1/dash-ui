@@ -2,39 +2,83 @@ import dash_html_components as html
 import dash_core_components as dcc
 
 
+VALID_GRID_PADDINGS = [0, 1, 2, 5, 10, 25, 50, 100]
+
+
 class Grid:
     def __init__(self, grid_id="default_grid_id",
-                 children=[], num_rows=1, num_cols=1):
-        self.className = "dgg-grid"
-        self.children = children
+                 children=None, num_rows=1, num_cols=1, grid_padding=1):
+        if num_rows not in range(1, 13):
+            return ValueError(
+                "Only 1 to 12 rows supported, not {:d}".format(num_rows))
+        if num_cols not in range(1, 13):
+            return ValueError(
+                "Only 1 to 12 columns supported, not {:d}".format(num_cols))
+        if grid_padding not in VALID_GRID_PADDINGS:
+            return ValueError(
+                "Only grid paddings in "
+                + str(VALID_GRID_PADDINGS)
+                + "supported")
+        self.className = "dui-grid"
+        self.children = [] if children is None else children
         self.grid_id = grid_id
         self.num_rows = num_rows
         self.num_cols = num_cols
+        self.grid_padding = grid_padding
 
-    def add_graph(self, graph_id, col, row, width, height):
+    def add_element(self, element, col, row, width, height):
+        if row > self.num_rows:
+            raise ValueError(
+                "Grid only has {:d} rows, not {:d}".format(
+                    self.num_rows, row
+                ))
+        if row + height - 1 > self.num_rows:
+            raise ValueError(
+                "Grid only has {:d} rows, not {:d} = {:d} + {:d} - 1".format(
+                    self.num_rows, row + height - 1, row, height
+                ))
+        if col > self.num_cols:
+            raise ValueError(
+                "Grid only has {:d} columns, not {:d}".format(
+                    self.num_cols, col
+                ))
+        if col + width - 1 > self.num_cols:
+            raise ValueError(
+                "Grid only has {:d} cols, not {:d} = {:d} + {:d} - 1".format(
+                    self.num_cols, col + width - 1, col, width
+                ))
         self.children.append(html.Div(
             style={
-                "grid-column": "{:%d} / span {:%d}".format(col, width),
-                "grid-row": "{:%d} / span {:%d}".format(row, height)
+                "grid-column": "{:d} / span {:d}".format(col, width),
+                "grid-row": "{:d} / span {:d}".format(row, height)
             },
-            children=dcc.Graph(id=graph_id, className="dgg-grid-figure")
+            children=element
         ))
 
+    def add_graph(self, graph_id, col, row, width, height):
+        graph = dcc.Graph(
+            id=graph_id,
+            style={"width": "100%", "height": "100%"})
+        self.add_element(
+            element=graph,
+            col=col,
+            row=row,
+            width=width,
+            height=height
+        )
+
     def get_component(self):
-        rows = ["{:.4f}%".format(100 / self.num_rows)] * self.num_rows
-        cols = ["{:.4f}%".format(100 / self.num_cols)] * self.num_cols
+        grid_class = " ".join([
+            "dui-grid",
+            "dui-grid-{:d}-rows".format(self.num_rows),
+            "dui-grid-{:d}-cols".format(self.num_cols),
+            "dui-grid-{:d}-padding".format(self.grid_padding)
+        ])
+        grid = html.Div(
+            children=self.children,
+            className=grid_class,
+            id=self.grid_id,
+        )
         return html.Div(
-            className="dgg-grid-wrapper",
-            style={'height': '100vh',
-                   'width': '100vw'},
-            children=html.Div(
-                children=self.children,
-                className=self.className,
-                id=self.grid_id,
-                style={
-                    'display': 'grid',
-                    'height': '100%',
-                    'width': '100%',
-                    'grid-template-rows': rows,
-                    'grid-template-columns': cols
-                }))
+            className="grid-wrapper",
+            children=grid)
