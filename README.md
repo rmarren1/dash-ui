@@ -7,6 +7,7 @@ to make creating dashboard-like layouts super easy in Dash.
 
 ##### A Simple Example Grid
 This example is found in `simple_demo.py`
+![image](https://user-images.githubusercontent.com/10272301/39724456-dc7144c0-5216-11e8-8b01-18ddc19946e2.png)
 
 
 First we add the external css url `https://codepen.io/rmarren1/pen/mLqGRg.css`.
@@ -41,7 +42,7 @@ We continue adding elements, then get something like this:
 
 ##### An Advanced Grid
 This example shows some interactivity into the grid (see `advanced_demo.py`)
-
+![ezgif com-video-to-gif](https://user-images.githubusercontent.com/10272301/39724420-bdf4551e-5216-11e8-8e3d-d2914bbabd53.gif)
 We can add plotly graph elements with the shortcut
 `grid.add_graph(col=1, row=1, width=3, height=4, graph_id="all-pie")`
 which creates a grid element with a graph with the `id` declared in `graph_id`.
