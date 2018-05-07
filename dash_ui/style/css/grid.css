@@ -1,7 +1,7 @@
 /*------------------------------- */
 /*      Grid                     */
 /*------------------------------- */
-dui-grid {
+.dui-grid {
   display: grid;
   height: 100%;
   width: 100%; }
@@ -102,11 +102,6 @@ dui-grid {
 .grid-wrapper {
   height: 100%;
   width: 100%;
-  padding: 0;
-  border-top: 1px solid gray; }
-
-.grid-figure {
-  height: 100%;
-  width: 100%; }
+  padding: 0; }
 
 /*# sourceMappingURL=grid.css.map */

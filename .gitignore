@@ -1,0 +1,3 @@
+*.pyc
+dash_ui/style/.sass-cache
+dash_ui/__pycache__
