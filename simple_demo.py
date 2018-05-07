@@ -1,19 +1,16 @@
 from dash import Dash
 import dash_html_components as html
 import dash_ui as dui
-import pandas as pd
 
 app = Dash()
-my_css_urls = [
-  "https://codepen.io/rmarren1/pen/mLqGRg.css",
-]
+my_css_urls = ["https://codepen.io/rmarren1/pen/mLqGRg.css"]
 
 for url in my_css_urls:
     app.css.append_css({
         "external_url": url
     })
 
-grid = dui.Grid(grid_id="grid", num_rows=12, num_cols=12, grid_padding=5)
+grid = dui.Grid(grid_id="grid", num_rows=12, num_cols=12, grid_padding=0)
 
 grid.add_element(col=1, row=1, width=3, height=4, element=html.Div(
     style={"background-color": "red", "height": "100%", "width": "100%"}

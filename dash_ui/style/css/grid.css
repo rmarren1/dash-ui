@@ -78,6 +78,9 @@
 .dui-grid-12-cols {
   grid-template-columns: repeat(12, 1fr); }
 
+.dui-grid-0-padding {
+  grid-gap: 0px; }
+
 .dui-grid-1-padding {
   grid-gap: 1px; }
 

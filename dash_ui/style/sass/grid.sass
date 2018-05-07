@@ -16,7 +16,7 @@ $class-slug: dui-grid !default
   .#{$class-slug}-#{$j}-cols
     grid-template-columns: repeat($j, 1fr)
 
-$gaps: 1, 2, 5, 10, 25, 50, 100
+$gaps: 0, 1, 2, 5, 10, 25, 50, 100
 @each $k in $gaps
   .#{$class-slug}-#{$k}-padding
     grid-gap: #{$k}px
