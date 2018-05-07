@@ -1,0 +1,32 @@
+/*-------------------------------*/
+/*      Grid                     */
+/*-------------------------------*/
+$class-slug: dui-grid !default
+
+#{$class-slug}
+  display: grid
+  height: 100%
+  width: 100%
+
+@for $i from 1 through 12
+  .#{$class-slug}-#{$i}-rows
+    grid-template-rows: repeat($i, 1fr)
+
+@for $j from 1 through 12
+  .#{$class-slug}-#{$j}-cols
+    grid-template-columns: repeat($j, 1fr)
+
+$gaps: 1, 2, 5, 10, 25, 50, 100
+@each $k in $gaps
+  .#{$class-slug}-#{$k}-padding
+    grid-gap: #{$k}px
+
+.grid-wrapper
+  height: 100%
+  width: 100%
+  padding: 0
+  border-top: 1px solid gray
+
+.grid-figure
+  height: 100%
+  width: 100%

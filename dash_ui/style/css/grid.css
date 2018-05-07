@@ -1,0 +1,112 @@
+/*------------------------------- */
+/*      Grid                     */
+/*------------------------------- */
+dui-grid {
+  display: grid;
+  height: 100%;
+  width: 100%; }
+
+.dui-grid-1-rows {
+  grid-template-rows: repeat(1, 1fr); }
+
+.dui-grid-2-rows {
+  grid-template-rows: repeat(2, 1fr); }
+
+.dui-grid-3-rows {
+  grid-template-rows: repeat(3, 1fr); }
+
+.dui-grid-4-rows {
+  grid-template-rows: repeat(4, 1fr); }
+
+.dui-grid-5-rows {
+  grid-template-rows: repeat(5, 1fr); }
+
+.dui-grid-6-rows {
+  grid-template-rows: repeat(6, 1fr); }
+
+.dui-grid-7-rows {
+  grid-template-rows: repeat(7, 1fr); }
+
+.dui-grid-8-rows {
+  grid-template-rows: repeat(8, 1fr); }
+
+.dui-grid-9-rows {
+  grid-template-rows: repeat(9, 1fr); }
+
+.dui-grid-10-rows {
+  grid-template-rows: repeat(10, 1fr); }
+
+.dui-grid-11-rows {
+  grid-template-rows: repeat(11, 1fr); }
+
+.dui-grid-12-rows {
+  grid-template-rows: repeat(12, 1fr); }
+
+.dui-grid-1-cols {
+  grid-template-columns: repeat(1, 1fr); }
+
+.dui-grid-2-cols {
+  grid-template-columns: repeat(2, 1fr); }
+
+.dui-grid-3-cols {
+  grid-template-columns: repeat(3, 1fr); }
+
+.dui-grid-4-cols {
+  grid-template-columns: repeat(4, 1fr); }
+
+.dui-grid-5-cols {
+  grid-template-columns: repeat(5, 1fr); }
+
+.dui-grid-6-cols {
+  grid-template-columns: repeat(6, 1fr); }
+
+.dui-grid-7-cols {
+  grid-template-columns: repeat(7, 1fr); }
+
+.dui-grid-8-cols {
+  grid-template-columns: repeat(8, 1fr); }
+
+.dui-grid-9-cols {
+  grid-template-columns: repeat(9, 1fr); }
+
+.dui-grid-10-cols {
+  grid-template-columns: repeat(10, 1fr); }
+
+.dui-grid-11-cols {
+  grid-template-columns: repeat(11, 1fr); }
+
+.dui-grid-12-cols {
+  grid-template-columns: repeat(12, 1fr); }
+
+.dui-grid-1-padding {
+  grid-gap: 1px; }
+
+.dui-grid-2-padding {
+  grid-gap: 2px; }
+
+.dui-grid-5-padding {
+  grid-gap: 5px; }
+
+.dui-grid-10-padding {
+  grid-gap: 10px; }
+
+.dui-grid-25-padding {
+  grid-gap: 25px; }
+
+.dui-grid-50-padding {
+  grid-gap: 50px; }
+
+.dui-grid-100-padding {
+  grid-gap: 100px; }
+
+.grid-wrapper {
+  height: 100%;
+  width: 100%;
+  padding: 0;
+  border-top: 1px solid gray; }
+
+.grid-figure {
+  height: 100%;
+  width: 100%; }
+
+/*# sourceMappingURL=grid.css.map */
