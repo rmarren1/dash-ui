@@ -33,7 +33,9 @@ grid.add_graph(col=1, row=5, width=4, height=4, graph_id="produce-pie")
 grid.add_element(
     col=5, row=5, width=4, height=4,
     element=html.Div([
-        html.H1("Dash UI Grid: US Agriculture Example"),
+        html.H1(
+            "Dash UI Grid: US Agriculture Example",
+            style={"padding": "10px", "margin": "0px"}),
         html.H3("Choose a State"),
         dcc.Dropdown(
             id="state-dropdown",
@@ -42,11 +44,10 @@ grid.add_element(
             value=df["state"].tolist()[0])
         ], style={
             "background-color": "Azure",
-            "border-radius": "5px",
             "height": "100%",
             "width": "100%",
-            "padding": "2px",
-            "text-align": "center"})
+            "text-align": "center",
+            "padding": "0px"})
     )
 
 grid.add_graph(col=9, row=5, width=4, height=4, graph_id="animal-pie")

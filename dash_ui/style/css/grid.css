@@ -102,6 +102,11 @@
 .dui-grid-100-padding {
   grid-gap: 100px; }
 
+.dui-grid-element {
+  border: 1px solid gray;
+  border-radius: 5px;
+  padding: 5px; }
+
 .grid-wrapper {
   height: 100%;
   width: 100%;

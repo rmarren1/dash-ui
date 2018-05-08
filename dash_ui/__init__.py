@@ -26,7 +26,7 @@ class Grid:
         self.num_cols = num_cols
         self.grid_padding = grid_padding
 
-    def add_element(self, element, col, row, width, height):
+    def add_element(self, element, col, row, width, height, element_class=""):
         if row > self.num_rows:
             raise ValueError(
                 "Grid only has {:d} rows, not {:d}".format(
@@ -52,6 +52,7 @@ class Grid:
                 "grid-column": "{:d} / span {:d}".format(col, width),
                 "grid-row": "{:d} / span {:d}".format(row, height)
             },
+            className="dui-grid-element " + element_class,
             children=element
         ))
 
