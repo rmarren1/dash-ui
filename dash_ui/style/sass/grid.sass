@@ -1,12 +1,47 @@
 /*-------------------------------*/
+/*      Settings                 */
+/*-------------------------------*/
+$divider-color: #333
+$divider-width: 2px // gets multiplied by 2
+$grid-background-color: #ddd
+$controlpanel-stripe-color1: #ddd
+$controlpanel-stripe-color2: #fff
+$grid-flex-proportion: 4
+$controlpanel-flex-proportion: 1
+$gaps: 0, 1, 2, 5, 10, 25, 50, 100 // possible gap pixel settings
+
+
+/*-------------------------------*/
+/*      Layout                   */
+/*-------------------------------*/
+.dui-layout
+  height: 100vh
+  width: 100vw
+  overflow: auto
+  display: flex
+  flex-wrap: wrap
+ 
+body
+  margin: 0
+
+/*-------------------------------*/
 /*      Grid                     */
 /*-------------------------------*/
-$class-slug: dui-grid !default
+.dui-grid-wrapper
+  flex: $grid-flex-proportion
+  background-color: $grid-background-color
+  border-left: $divider-width solid $divider-color
 
-.#{$class-slug}
+.dui-grid
   display: grid
   height: 100%
   width: 100%
+  box-sizing: border-box
+  -moz-box-sizing: border-box
+  -webkit-box-sizing: border-box
+  padding: 5px
+
+$class-slug: dui-grid !default
 
 @for $i from 1 through 12
   .#{$class-slug}-#{$i}-rows
@@ -16,17 +51,26 @@ $class-slug: dui-grid !default
   .#{$class-slug}-#{$j}-cols
     grid-template-columns: repeat($j, 1fr)
 
-$gaps: 0, 1, 2, 5, 10, 25, 50, 100
 @each $k in $gaps
   .#{$class-slug}-#{$k}-padding
     grid-gap: #{$k}px
 
 .dui-grid-element
-  border: 1px solid gray
-  border-radius: 5px
-  padding: 5px
+  box-sizing: border-box
+  -moz-box-sizing: border-box
+  -webkit-box-sizing: border-box
+  overflow: auto
 
-.grid-wrapper
-  height: 100%
-  width: 100%
-  padding: 0
+/*-------------------------------*/
+/*      Control Panel            */
+/*-------------------------------*/
+.dui-controlpanel-wrapper
+  flex: $controlpanel-flex-proportion
+  border-right: $divider-width solid $divider-color
+
+.dui-controlpanel-group
+  padding: 10px
+  &:nth-child(2n+1)
+    background-color: $controlpanel-stripe-color1
+  &:nth-child(2n+2)
+    background-color: $controlpanel-stripe-color2 

@@ -1,10 +1,35 @@
 /*------------------------------- */
+/*      Settings                 */
+/*------------------------------- */
+/*------------------------------- */
+/*      Layout                   */
+/*------------------------------- */
+.dui-layout {
+  height: 100vh;
+  width: 100vw;
+  overflow: auto;
+  display: flex;
+  flex-wrap: wrap; }
+
+body {
+  margin: 0; }
+
+/*------------------------------- */
 /*      Grid                     */
 /*------------------------------- */
+.dui-grid-wrapper {
+  flex: 4;
+  background-color: #ddd;
+  border-left: 2px solid #333; }
+
 .dui-grid {
   display: grid;
   height: 100%;
-  width: 100%; }
+  width: 100%;
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  padding: 5px; }
 
 .dui-grid-1-rows {
   grid-template-rows: repeat(1, 1fr); }
@@ -103,13 +128,23 @@
   grid-gap: 100px; }
 
 .dui-grid-element {
-  border: 1px solid gray;
-  border-radius: 5px;
-  padding: 5px; }
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  overflow: auto; }
 
-.grid-wrapper {
-  height: 100%;
-  width: 100%;
-  padding: 0; }
+/*------------------------------- */
+/*      Control Panel            */
+/*------------------------------- */
+.dui-controlpanel-wrapper {
+  flex: 1;
+  border-right: 2px solid #333; }
+
+.dui-controlpanel-group {
+  padding: 10px; }
+  .dui-controlpanel-group:nth-child(2n+1) {
+    background-color: #ddd; }
+  .dui-controlpanel-group:nth-child(2n+2) {
+    background-color: #fff; }
 
 /*# sourceMappingURL=grid.css.map */

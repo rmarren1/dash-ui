@@ -13,6 +13,7 @@ df = pd.read_csv(
     'usa-agricultural-exports-2011.csv')
 
 app = Dash()
+app.config['suppress_callback_exceptions'] = True
 my_css_urls = [
   "https://codepen.io/rmarren1/pen/mLqGRg.css",
 ]
@@ -22,45 +23,81 @@ for url in my_css_urls:
         "external_url": url
     })
 
-grid = dui.Grid(grid_id="grid", num_rows=12, num_cols=12, grid_padding=5)
+controlpanel = dui.ControlPanel(_id="controlpanel")
+controlpanel.create_group(
+    group="State",
+    group_title="Change the selected State."
+)
+state_select = dcc.Dropdown(
+    id="state-dropdown",
+    options=[{
+        'label': x.title(),
+        'value': x
+        } for x in df["state"].tolist()
+    ],
+    value=df["state"].tolist()[0]
+)
+controlpanel.add_element(state_select, "State")
 
-grid.add_graph(col=1, row=1, width=3, height=4, graph_id="all-pie")
+controlpanel.create_group(
+    group="Another",
+    group_title="Another option group."
+)
+another = dcc.Dropdown(
+    id="another-element",
+    options=[{
+        'label': "example",
+        'value': "show"
+        }
+    ],
+    value="show"
+)
+controlpanel.add_element(html.P("Here is another group"), "Another")
+controlpanel.add_element(another, "Another")
 
-grid.add_graph(col=4, row=1, width=9, height=4, graph_id="all-bar")
+controlpanel.create_group(
+    group="Third",
+    group_title="A third option group"
+)
+third = dcc.RadioItems(
+    id="third-element",
+    options=[
+        {
+        'label': "example",
+        'value': "show"
+        },
+        {
+        'label': "example2",
+        'value': "show2"
+        },
+    ],
+    value="show2"
+)
+controlpanel.add_element(third, "Third")
 
-grid.add_graph(col=1, row=5, width=4, height=4, graph_id="produce-pie")
+grid = dui.Grid(
+    _id="grid",
+    num_rows=12,
+    num_cols=12,
+    grid_padding=10
+)
 
-grid.add_element(
-    col=5, row=5, width=4, height=4,
-    element=html.Div([
-        html.H1(
-            "Dash UI Grid: US Agriculture Example",
-            style={"padding": "10px", "margin": "0px"}),
-        html.H3("Choose a State"),
-        dcc.Dropdown(
-            id="state-dropdown",
-            options=[{'label': x.title(), 'value': x}
-                     for x in df["state"].tolist()],
-            value=df["state"].tolist()[0])
-        ], style={
-            "background-color": "Azure",
-            "height": "100%",
-            "width": "100%",
-            "text-align": "center",
-            "padding": "0px"})
-    )
 
-grid.add_graph(col=9, row=5, width=4, height=4, graph_id="animal-pie")
+grid.add_graph(col=1, row=1, width=12, height=4, graph_id="all-bar")
+grid.add_graph(col=1, row=5, width=12, height=4, graph_id="total-exports-bar")
 
-grid.add_graph(col=1, row=9, width=9, height=4, graph_id="total-exports-bar")
+grid.add_graph(col=1, row=9, width=4, height=4, graph_id="all-pie")
+grid.add_graph(col=5, row=9, width=4, height=4, graph_id="produce-pie")
+grid.add_graph(col=9, row=9, width=4, height=4, graph_id="animal-pie")
+
 
 grid.add_graph(col=10, row=9, width=3, height=4, graph_id="total-exports-pie")
 
 
-app.layout = html.Div(grid.get_component(), style={
-    "height": "calc(100vh - 20px)",
-    "width": "calc(100vw - 20px)"
-})
+app.layout = dui.Layout(
+    grid=grid,
+    controlpanel=controlpanel
+)
 
 
 @app.callback(Output('total-exports-pie', 'figure'),
@@ -92,6 +129,7 @@ def create_total_exports_bar(state):
         ))
     return go.Figure(data=[trace], layout={
         'showlegend': False,
+        'autosize': True,
         'title':
         "{:s}'s agriculture exports vs. other states".format(state)
     })
@@ -125,7 +163,7 @@ def create_animal_pie(state):
     return go.Figure(data=[trace], layout={
         'showlegend': False,
         'title':
-        "{:s}'s animal product distribution".format(state)
+        "{:s}'s animal product distribution".format(state),
     })
 
 
