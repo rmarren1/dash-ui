@@ -86,3 +86,16 @@ which creates a grid element with a graph with the `id` declared in `graph_id`.
 
 We can end up with this really nice interactive dashboard, with only
 200 lines of code.
+
+### Customizing the style
+To have your own flavor of dashboard, simply fork the source SASS [here](https://codepen.io/rmarren1/pen/mLqGRg), make changes, then add the css from codepen to your project using:
+```
+my_css_urls = [
+  "https://codepen.io/your-codepen-name/pen/your-pen-identifier.css",
+]
+
+for url in my_css_urls:
+    app.css.append_css({
+        "external_url": url
+    })
+```
