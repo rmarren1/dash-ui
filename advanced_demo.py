@@ -91,9 +91,6 @@ grid.add_graph(col=5, row=9, width=4, height=4, graph_id="produce-pie")
 grid.add_graph(col=9, row=9, width=4, height=4, graph_id="animal-pie")
 
 
-grid.add_graph(col=10, row=9, width=3, height=4, graph_id="total-exports-pie")
-
-
 app.layout = dui.Layout(
     grid=grid,
     controlpanel=controlpanel
