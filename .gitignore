@@ -1,3 +1,5 @@
 *.pyc
 dash_ui/style/.sass-cache
 dash_ui/__pycache__
+dist/
+dash_ui.egg-info/

@@ -63,12 +63,12 @@ third = dcc.RadioItems(
     id="third-element",
     options=[
         {
-        'label': "example",
-        'value': "show"
+            'label': "example",
+            'value': "show"
         },
         {
-        'label': "example2",
-        'value': "show2"
+            'label': "example2",
+            'value': "show2"
         },
     ],
     value="show2"

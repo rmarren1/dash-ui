@@ -61,9 +61,7 @@ class Grid:
             id=graph_id,
             style={"width": "100%", "height": "100%"},
             config=dict(
-                autosizable=True,
-                frameMargins=False,
-                displayModeBar=False,
+                autosizable=True
             )
         )
         self.add_element(

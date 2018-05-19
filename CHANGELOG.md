@@ -1,3 +1,6 @@
+# 0.3.1
+* Removed 'displayModeBar = False' which was accidentally set in `Grid.add_graph`
+
 # 0.3.0
 * Added a `ControlPanel` object. When added, this is a sidebar which holds input components separate from the plot grid.
 * Added the function `dash_ui.Layout` which creats the layout from a `Grid` Object and (optionally) a `ControlPanel` object
