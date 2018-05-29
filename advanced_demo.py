@@ -91,11 +91,16 @@ grid.add_graph(col=5, row=9, width=4, height=4, graph_id="produce-pie")
 grid.add_graph(col=9, row=9, width=4, height=4, graph_id="animal-pie")
 
 
-app.layout = dui.Layout(
-    grid=grid,
-    controlpanel=controlpanel
+app.layout = html.Div(
+    dui.Layout(
+        grid=grid,
+        controlpanel=controlpanel
+    ),
+    style={
+        'height': '100vh',
+        'width': '100vw'
+    }
 )
-
 
 @app.callback(Output('total-exports-pie', 'figure'),
               [Input('state-dropdown', 'value')])

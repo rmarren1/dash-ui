@@ -32,8 +32,14 @@ grid.add_element(col=10, row=9, width=3, height=4, element=html.Div(
     style={"background-color": "purple", "height": "100%", "width": "100%"}
 ))
 
-app.layout = dui.Layout(
-    grid=grid,
+app.layout = html.Div(
+    dui.Layout(
+        grid=grid,
+    ),
+    style={
+        'height': '100vh',
+        'width': '100vw'
+    }
 )
 
 if __name__ == "__main__":
