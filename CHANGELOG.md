@@ -1,3 +1,7 @@
+# 0.4.0
+* Added `menu` and `menu_height` attributes to `add_graph`, which places `menu`
+on top of the graph element with `menu_height`.
+
 # 0.3.1
 * Removed 'displayModeBar = False' which was accidentally set in `Grid.add_graph`
 
