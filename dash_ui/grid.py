@@ -56,14 +56,26 @@ class Grid:
             children=element
         ))
 
-    def add_graph(self, graph_id, col, row, width, height):
+    def add_graph(self, graph_id, col, row, width, height, menu=None,
+                  menu_height=50):
+        graph_height = "calc(100% - {:d}px)".format(menu_height) \
+                       if menu else "100%"
         graph = dcc.Graph(
             id=graph_id,
-            style={"width": "100%", "height": "100%"},
+            style={
+                "width": "100%",
+                "height": graph_height
+            },
             config=dict(
                 autosizable=True
             )
         )
+        if menu:
+            graph = html.Div([
+                html.Div(menu, style={"height": menu_height}),
+                graph
+            ], style={"height": "100%"})
+
         self.add_element(
             element=graph,
             col=col,

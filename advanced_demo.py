@@ -1,6 +1,7 @@
 from dash import Dash
 import dash_core_components as dcc
 import dash_html_components as html
+import sd_material_ui as mui
 from dash.dependencies import Input, Output
 import dash_ui as dui
 import pandas as pd
@@ -16,6 +17,7 @@ app = Dash()
 app.config['suppress_callback_exceptions'] = True
 my_css_urls = [
   "https://codepen.io/rmarren1/pen/mLqGRg.css",
+  "https://use.fontawesome.com/releases/v5.1.0/css/all.css"
 ]
 
 for url in my_css_urls:
@@ -79,16 +81,68 @@ grid = dui.Grid(
     _id="grid",
     num_rows=12,
     num_cols=12,
-    grid_padding=10
+    grid_padding=0
 )
 
+_iconStyle = {
+    "font-size": 16,
+    "padding": 2,
+    "color": "white"
+}
 
-grid.add_graph(col=1, row=1, width=12, height=4, graph_id="all-bar")
+_style = {
+    "height": 32,
+    "width": 32,
+    "padding": 2,
+    "border-radius": "2px",
+    "flex": 1,
+    "margin-right": 2
+}
+
+menu = html.Div(
+    children=[
+        mui.IconButton(
+            tooltip="Delete Plot",
+            tooltipPosition="bottom-right",
+            iconClassName="fas fa-trash-alt",
+            touch=True,
+            iconStyle=_iconStyle,
+            style={"background": "#EBBAB9", **_style}
+        ),
+        mui.IconButton(
+            tooltip="Save Plot",
+            tooltipPosition="bottom-center",
+            iconClassName="fas fa-save",
+            touch=True,
+            iconStyle=_iconStyle,
+            style={"background": "#C9C5BA", **_style}
+        ),
+        mui.IconButton(
+            tooltip="Upload Plot to Cloud",
+            tooltipPosition="bottom-center",
+            iconClassName="fas fa-cloud-upload-alt",
+            touch=True,
+            iconStyle=_iconStyle,
+            style={"background": "#97B1A6", **_style}
+        ),
+        mui.IconButton(
+            tooltip="Download Plot to My Computer",
+            tooltipPosition="bottom-center",
+            iconClassName="fas fa-download",
+            touch=True,
+            iconStyle=_iconStyle,
+            style={"background": "#698996", **_style}
+        ),
+    ], style={"display": "flex"})
+
+grid.add_graph(col=1, row=1, width=12, height=4, graph_id="all-bar",
+               menu=menu, menu_height=32)
 grid.add_graph(col=1, row=5, width=12, height=4, graph_id="total-exports-bar")
 
 grid.add_graph(col=1, row=9, width=4, height=4, graph_id="all-pie")
 grid.add_graph(col=5, row=9, width=4, height=4, graph_id="produce-pie")
-grid.add_graph(col=9, row=9, width=4, height=4, graph_id="animal-pie")
+grid.add_graph(col=9, row=9, width=4, height=4, graph_id="animal-pie",
+               menu=menu, menu_height=32)
 
 
 app.layout = html.Div(
@@ -101,6 +155,7 @@ app.layout = html.Div(
         'width': '100vw'
     }
 )
+
 
 @app.callback(Output('total-exports-pie', 'figure'),
               [Input('state-dropdown', 'value')])
@@ -198,5 +253,7 @@ def create_all_bar(state):
         'title':
         "{:s}'s agriculture distribution".format(state)
     })
+
+
 if __name__ == "__main__":
     app.run_server(debug=True)
