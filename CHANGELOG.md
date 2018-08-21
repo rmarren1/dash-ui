@@ -1,4 +1,7 @@
 # 0.4.0
+* Added collapsible section functionality to the `ControlPanel`. See `advanced_demo.py` for usage and an example.
+
+# 0.4.0
 * Added `menu` and `menu_height` attributes to `add_graph`, which places `menu`
 on top of the graph element with `menu_height`.
 

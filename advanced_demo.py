@@ -26,8 +26,12 @@ for url in my_css_urls:
     })
 
 controlpanel = dui.ControlPanel(_id="controlpanel")
+controlpanel.create_section(
+    section="StateSection",
+    section_title="State Selection Section"
+)
 controlpanel.create_group(
-    group="State",
+    group="StateGroup",
     group_title="Change the selected State."
 )
 state_select = dcc.Dropdown(
@@ -39,10 +43,15 @@ state_select = dcc.Dropdown(
     ],
     value=df["state"].tolist()[0]
 )
-controlpanel.add_element(state_select, "State")
+controlpanel.add_element(state_select, "StateGroup")
 
+controlpanel.create_section(
+    section="AnotherSection",
+    section_title="Another Section",
+    defaultOpen=False
+)
 controlpanel.create_group(
-    group="Another",
+    group="AnotherGroup",
     group_title="Another option group."
 )
 another = dcc.Dropdown(
@@ -54,11 +63,11 @@ another = dcc.Dropdown(
     ],
     value="show"
 )
-controlpanel.add_element(html.P("Here is another group"), "Another")
-controlpanel.add_element(another, "Another")
+controlpanel.add_element(html.P("Here is another group"), "AnotherGroup")
+controlpanel.add_element(another, "AnotherGroup")
 
 controlpanel.create_group(
-    group="Third",
+    group="ThirdGroup",
     group_title="A third option group"
 )
 third = dcc.RadioItems(
@@ -75,7 +84,10 @@ third = dcc.RadioItems(
     ],
     value="show2"
 )
-controlpanel.add_element(third, "Third")
+controlpanel.add_element(third, "ThirdGroup")
+
+controlpanel.add_groups_to_section("StateSection", ["StateGroup"])
+controlpanel.add_groups_to_section("AnotherSection", ["AnotherGroup", "ThirdGroup"])
 
 grid = dui.Grid(
     _id="grid",
@@ -256,4 +268,4 @@ def create_all_bar(state):
 
 
 if __name__ == "__main__":
-    app.run_server(debug=True)
+    app.run_server(debug=True, port=8049)
